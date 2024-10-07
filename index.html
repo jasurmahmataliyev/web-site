@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Aloqa Bank</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+
+  <body>
+    <nav>
+      <h2><b>Aloqa</b> Bank</h2>
+      <p>Aloqa bank Termiz filiali web saytiga xush kelibsiz!!!</p>
+    </nav>
+
+    <!-- 111111111111111111111111111 -->
+
+    <div class="hero container">
+      <div class="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item visible">
+            <img src="./img/AloqaBank_photo.jpg" alt="Image 1" />
+          </div>
+          <div class="carousel-item">
+            <img src="./img/Aloqabank_Surxandaryo.jpg" alt="Image 2" />
+          </div>
+          <div class="carousel-item">
+            <img src="./img/AloqaBank_photo.jpg" alt="Image 3" />
+          </div>
+        </div>
+        <button class="carousel-control prev" onclick="prevSlide()">
+          &#10094;
+        </button>
+        <button class="carousel-control next" onclick="nextSlide()">
+          &#10095;
+        </button>
+      </div>
+    </div>
+
+    <div class="search-page container">
+      <h2>Tumanlar</h2>
+      <div class="district-buttons">
+        <button onclick="searchByDistrict('Termiz')">Termiz</button>
+        <button onclick="searchByDistrict('Denov')">Denov</button>
+        <button onclick="searchByDistrict('Sherobod')">Sherobod</button>
+        <button onclick="searchByDistrict('Qumqorgon')">Qumqo'rg'on</button>
+        <button onclick="searchByDistrict('Jarqorgon')">Jarqo'rg'on</button>
+        <button onclick="searchByDistrict('Angor')">Angor</button>
+        <button onclick="searchByDistrict('Bandixon')">Bandixon</button>
+        <button onclick="searchByDistrict('Boysun')">Boysun</button>
+        <button onclick="searchByDistrict('Qiziriq')">Qiziriq</button>
+        <button onclick="searchByDistrict('Muzrabot')">Muzrabot</button>
+        <button onclick="searchByDistrict('Oltinsoy')">Oltinsoy</button>
+        <button onclick="searchByDistrict('Sariosiyo')">Sariosiyo</button>
+        <button onclick="searchByDistrict('Shurchi')">Shurchi</button>
+      </div>
+
+      <hr />
+
+      <h2>ID orqali qidiruv</h2>
+      <div class="id-div">
+        <input
+          type="text"
+          id="search-id"
+          placeholder="ID raqamini kiriting..."
+        />
+        <button onclick="searchById()">Qidirish</button>
+      </div>
+
+      <div id="result" class="result-container container"></div>
+    </div>
+
+    <div class="plus-page container">
+      <h3>Zoomrad bilan osonroq!!</h3>
+      <div class="plus-about">
+        <div class="link-1">
+          <h4>Chorak-asr online</h4>
+          <p>Mablagʻlaringizdan faol foydalaning va ularni erkin boshqaring.</p>
+          <a
+            href="https://aloqabank.uz/uz/private/deposit/chorak-asr-online/"
+            class="open-link"
+            data-url="https://aloqabank.uz/uz/private/deposit/chorak-asr-online/"
+            >Batafsil--></a
+          >
+        </div>
+        <div class="link-1">
+          <h4>Сomfort – online</h4>
+          <p>
+            Mablag‘laringizni xorijiy valyutada jamg‘arish <br />
+            va qo‘shimcha daromad olish imkoniyatidan foydalaning.
+          </p>
+          <a
+            href="https://aloqabank.uz/uz/private/deposit/comfort9311/"
+            class="open-link"
+            data-url="https://aloqabank.uz/uz/private/deposit/comfort9311/"
+            >Batafsil--></a
+          >
+        </div>
+        <div class="link-1" id="humo">
+          <h4>Virtual HUMO</h4>
+          <p>HUMO plastik kartasini online bepul olish!!</p>
+          <a
+            href="https://aloqabank.uz/uz/private/plastic-cards/list/humo-virtual/"
+            class="open-link"
+            data-url="https://aloqabank.uz/uz/private/plastic-cards/list/humo-virtual/"
+            >Batafsil--></a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="about-bank container">
+      <div class="bank">
+        <h3>ALOQA BANK</h3>
+      </div>
+      <div class="bank-info">
+        <p>
+          <b>Rahbar:</b> Kodirov Farrux Malikovich <br /><br />
+          <b>Telefon:</b> +998 76 224-12-94 <br /><br />
+          <b>Faks:</b> +998 76 224-26-62 <br /><br />
+          <b>E-mail:</b> termiz@aloqabank.uz <br /><br />
+          <b>Manzil:</b> 190110, Surxondaryo viloyati, Termiz shahri, Alisher
+          Navoiy koʻchasi, 9a-uy <br /><br />
+          <b>Ish tartibi:</b> Dushanba – Juma 9:00 17:00 <br /><br />
+          <b>Tushlik:</b> 13:00 dan 14:00 gacha
+        </p>
+      </div>
+    </div>
+
+    <div class="footer container">
+      <i class="fas fa-home" id="home"></i>
+      <i class="fas fa-search" id="search"></i>
+      <i class="fas fa-plus" id="plus"></i>
+      <i class="fas fa-info" id="about"></i>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
