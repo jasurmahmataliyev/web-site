@@ -143,9 +143,11 @@ function displayData(data) {
                 <p><strong>Muddati o'tgan qarz:</strong> ${row[4]}</p>
                 <p><strong>Tuman:</strong> ${row[5]}</p>
                 <p><strong>Manzili:</strong> <a href="${row[6]}"><i class="fa-solid fa-location-dot"></i></a> </p>
-            </div>`;
+                <p><strong>Holati:</strong> ${row[7]}</p>
+                </div>`;
   });
 }
+
 // ID bo'yicha qidiruv natijalarini HTMLga chiqarish
 function displayFoundData(data) {
   const resultDiv = document.getElementById("result"); // Ma'lumotlarni chiqarish bo'limi
@@ -160,7 +162,9 @@ function displayFoundData(data) {
                     <p><strong>Qarzi:</strong> ${row[3]}</p>
                     <p><strong>Qarzdorligi:</strong> ${row[4]}</p>
                     <p><strong>Tuman:</strong> ${row[5]}</p>
-                <p><strong>Manzili:</strong> <a href="${row[6]}"><i class="fa-solid fa-location-dot"></i></a> </p>
+                    <p><strong>Manzili:</strong> <a href="${row[6]}"><i class="fa-solid fa-location-dot"></i></a> </p>
+                    <p><strong>Holati:</strong> ${row[7]}</p>
+
                 </div>`;
     });
   } else {
@@ -179,6 +183,8 @@ async function searchByDistrict(district) {
     console.log(filteredData);
   }
 }
+
+// ID bo'yicha qidiruv
 async function searchById() {
   const searchId = document.getElementById("search-id").value.trim(); // Foydalanuvchi kiritgan ID
   if (!searchId) {
@@ -197,6 +203,7 @@ async function searchById() {
 document.querySelectorAll(".district-buttons button").forEach((button) => {
   button.addEventListener("click", function () {
     const selectedDistrict = this.innerText; // Tugma matnidan tumanni olish
+    showSoftHardButtons(selectedDistrict); // SOFT/HARD tugmalarini ko'rsatish
     searchByDistrict(selectedDistrict); // Tuman bo'yicha qidirish
   });
 });
@@ -205,3 +212,48 @@ document.querySelectorAll(".district-buttons button").forEach((button) => {
 document
   .querySelector(".search-page button")
   .addEventListener("click", searchById);
+
+// SOFT va HARD tugmalarini ko'rsatish
+function showSoftHardButtons(district) {
+  const softHardContainer = document.getElementById("soft-hard-buttons"); // SOFT va HARD tugmalari uchun bo'lim
+  softHardContainer.innerHTML = `
+    <button id="soft">SOFT</button>
+    <button id="hard">HARD</button>
+  `; // Tugmalarni qo'shish
+  
+  // Natijalarni tozalash
+  const resultDiv = document.getElementById("result");
+  resultDiv.innerHTML = ""; // Natijalarni tozalash
+
+  // SOFT tugmasiga hodisa qo'shish
+  document.getElementById("soft").addEventListener("click", async () => {
+    const data = await loadExcelData(); // Excel ma'lumotlarini yuklash
+    if (data) {
+      const filteredData = data.filter(
+        (row) => row[5] === district && row[4] > 0 && row[7] === "SOFT" // 7-ustun "SOFT" bo'lishi kerak
+      );
+      displayData(filteredData); // Natijalarni chiqarish
+    }
+  });
+
+  // HARD tugmasiga hodisa qo'shish
+  document.getElementById("hard").addEventListener("click", async () => {
+    const data = await loadExcelData(); // Excel ma'lumotlarini yuklash
+    if (data) {
+      const filteredData = data.filter(
+        (row) => row[5] === district && row[4] > 0 && row[7] === "HARD" // 7-ustun "HARD" bo'lishi kerak
+      );
+      displayData(filteredData); // Natijalarni chiqarish
+    }
+  });
+}
+
+// Tuman tanlanganida qidiruv
+document.querySelectorAll(".district-buttons button").forEach((button) => {
+  button.addEventListener("click", function () {
+    const selectedDistrict = this.innerText; // Tugma matnidan tumanni olish
+    showSoftHardButtons(selectedDistrict); // SOFT/HARD tugmalarini ko'rsatish
+    // Natijalarni tozalash
+    document.getElementById("result").innerHTML = ""; 
+  });
+});
